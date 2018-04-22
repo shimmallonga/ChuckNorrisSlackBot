@@ -4,17 +4,24 @@ import re
 import random
 from slackclient import SlackClient
 import urllib,json
+from random import randint
 
+
+
+
+# print json.dumps(data, sort_keys=True, indent=4)
 
 
 ###############
 # CONSTANTS
 ###############
+giphydata = json.loads(urllib.urlopen("http://api.giphy.com/v1/gifs/search?q=chuck+norris&api_key=<APIKEY>&limit=5").read())
+random=randint(0, 4)
 RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
 EXAMPLE_COMMAND = "do"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 
-slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+slack_client = SlackClient(<SLACK_BOT_TOKEN>))
 starterbot_id = None
 FACTS=[
 "All arrays Chuck Norris declares are of infinite size, because Chuck Norris knows no bounds.",
@@ -118,6 +125,12 @@ def handle_command(command, channel):
         channel=channel,
         text=default_response
     )
+    slack_client.api_call(
+        "chat.postMessage",
+        channel=channel,
+        text=giphydata["data"][random]["url"]
+    )
+
 
 
 

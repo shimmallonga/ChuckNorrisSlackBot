@@ -1,4 +1,4 @@
-FROM python
+FROM frolvlad/alpine-python3
 
 COPY chuck.py /tmp
 RUN pip install slackclient

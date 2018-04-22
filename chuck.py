@@ -3,6 +3,9 @@ import time
 import re
 import random
 from slackclient import SlackClient
+import urllib,json
+
+
 
 ###############
 # CONSTANTS
